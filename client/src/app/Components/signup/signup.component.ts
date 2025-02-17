@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
-  standalone: true,
-  imports: [],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+
+
+  constructor(private router: Router) { }
+
+
+  goBack(): void {
+    this.router.navigate(['/login']);
+  }
+
+  onSubmit(): void {
+    this.router.navigate(['/home']);
+  }
 
 }
