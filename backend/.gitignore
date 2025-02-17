@@ -1,0 +1,14 @@
+# Ignore Visual Studio files
+.vs/
+*.suo
+*.ntvs*
+*.nupkg
+# Ignore build and debugging files
+bin/
+obj/
+Debug/
+Release/
+# Ignore NuGet packages
+packages/
+# Ignore logs
+*.log
