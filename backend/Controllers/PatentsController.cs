@@ -1,4 +1,15 @@
-// Controllers/PatentsController.cs
+/*
+*
+* PatentsController
+*
+* This handles HTTP requests for managing the data related to the user. 
+* This currently provides CRUD operations to the database.
+*
+* This controller class utilizes respective Service and Repository layers. 
+* The PatentsService handles Business Logic.
+* The PatentsRepository handles data access through Entity Framework Core.
+*
+*/
 using Backend.Services;
 using Backend.Logging;
 using Microsoft.AspNetCore.Mvc;
