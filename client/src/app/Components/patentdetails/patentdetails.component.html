@@ -3,6 +3,17 @@
         <h1>Patent Information</h1>
     </header>
     <main>
+        <div class="patent-search-container">
+            <h1>Patent Search Results</h1>
+          
+            <input type="text" id="query" placeholder="Search patents...">
+            <button (click)="searchPatents()">Search</button>
+          
+            <div class="patent-results">
+                <h2>Results:</h2>
+                <ul id="patent-results-list"></ul>
+              </div>
+            </div>
         <section class="patent-overview">
             <h2>Patent Overview</h2>
             <ul>
