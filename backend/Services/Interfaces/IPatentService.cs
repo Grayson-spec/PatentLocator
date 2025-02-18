@@ -1,4 +1,11 @@
-// Services/IPatentService.cs
+/*
+* IPatentService
+*
+* This Defines methods for crud operations. 
+*
+* Implementations of this interface allow for 
+* decoupling, testability, and flexability.
+*/
 using backend.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
