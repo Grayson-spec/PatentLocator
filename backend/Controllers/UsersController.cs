@@ -1,13 +1,12 @@
 // Controllers/UsersController.cs
-using Backend.Services;
-using Backend.Logging;
+using backend.Services;
+using backend.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using backend.Models;
-using backend.Logging;
-using backend.Services;
 
-namespace Backend.Controllers
+
+namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +21,6 @@ namespace Backend.Controllers
             _loggerManager = loggerManager;
         }
 
-        // GET api/users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -31,41 +29,62 @@ namespace Backend.Controllers
             return Ok(users);
         }
 
-        // GET api/users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User?>> GetUser(int id)
         {
+            if (id < 1)
+            {
+                _loggerManager.Logger.LogError($"Invalid user id: {id}");
+                return BadRequest("Invalid user id");
+            }
+
             _loggerManager.Logger.LogInformation($"GetUser endpoint called with id {id}.");
             return await _userService.GetUserAsync(id);
         }
 
-        // POST api/users
         [HttpPost]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
+            if (!ModelState.IsValid)
+            {
+                _loggerManager.Logger.LogError("Invalid user model");
+                return BadRequest(ModelState);
+            }
+
             _loggerManager.Logger.LogInformation("CreateUser endpoint called.");
             await _userService.CreateUserAsync(user);
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
 
-        // PUT api/users/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, User user)
         {
-            _loggerManager.Logger.LogInformation($"UpdateUser endpoint called with id {id}.");
             if (id != user.Id)
             {
-                _loggerManager.Logger.LogError($"Invalid user id {id}.");
-                return BadRequest();
+                _loggerManager.Logger.LogError($"Invalid user id: {id}");
+                return BadRequest("Invalid user id");
             }
+
+            if (!ModelState.IsValid)
+            {
+                _loggerManager.Logger.LogError("Invalid user model");
+                return BadRequest(ModelState);
+            }
+
+            _loggerManager.Logger.LogInformation($"UpdateUser endpoint called with id {id}.");
             await _userService.UpdateUserAsync(user);
             return NoContent();
         }
 
-        // DELETE api/users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
+            if (id < 1)
+            {
+                _loggerManager.Logger.LogError($"Invalid user id: {id}");
+                return BadRequest("Invalid user id");
+            }
+
             _loggerManager.Logger.LogInformation($"DeleteUser endpoint called with id {id}.");
             await _userService.DeleteUserAsync(id);
             return NoContent();
