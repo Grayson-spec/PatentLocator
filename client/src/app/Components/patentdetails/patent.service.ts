@@ -6,10 +6,15 @@ import { catchError, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+/*
+* Errors here in getting the api endpoint in. CORS policy caused error and
+* the proper data format isnt coming through. 
+*/
 export class PatentService {
 
   private apiKey = ''
-  private apiUrl = ''; // Replace with your API endpoint
+  private apiUrl = ''; 
 
   constructor(private http: HttpClient) { }
 

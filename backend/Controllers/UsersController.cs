@@ -1,4 +1,15 @@
-// Controllers/UsersController.cs
+/*
+*
+* UserController
+*
+* This handles HTTP requests for managing the data related to the user. 
+* This currently provides CRUD operations to the database.
+*
+* This controller class utilizes respective Service and Repository layers. 
+* The UserService handles Business Logic.
+* The UserRepository handles data access through Entity Framework Core.
+*
+*/
 using backend.Services;
 using backend.Logging;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,12 @@
-// Repositories/UserRepository.cs
+/*
+* UserRepository
+*
+* This Repository encapsulates data access logic, which provides
+* a layer of abstraction between the service and the database.
+*
+* This repository uses Entity Framework Core to interact with the AppDbContext 
+* which allows for all database operations to be automated.
+*/
 using backend.Models;
 using backend.Data;
 using Microsoft.EntityFrameworkCore;

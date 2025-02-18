@@ -1,4 +1,13 @@
-// Services/UserService.cs
+/*
+*
+* UserService
+*
+* This encapsulates business logic for managing the user, which provides abstraction
+* between the controller and repository.
+*
+* This service uses the IUserRepository to interact with the data, allowing 
+* for decoupling and testability.
+*/
 using backend.Models;
 using backend.Repositories;
 using backend.Services;

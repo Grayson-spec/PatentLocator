@@ -6,7 +6,7 @@ namespace backend.Models
         public int Id { get; set; }
         public required string Username { get; set; }
         public required string Email { get; set; }
-        public required string Password { get; set; } // Will be hashed later
+        public required string Password { get; set; } // Will be hashed later with authentication (Oauth or identity)
         public required string Role { get; set; }
     }
 }

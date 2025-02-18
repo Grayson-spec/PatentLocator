@@ -8,6 +8,7 @@ import { AccountComponent } from './Components/account/account.component';
 import { PatentdetailsComponent } from './Components/patentdetails/patentdetails.component';
 
 export const routes: Routes = [
+    { path: '', component: WelcomepageComponent},
     { path: 'home', component: HomepageComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'login', component: LoginComponent},

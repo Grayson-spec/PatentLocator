@@ -1,4 +1,12 @@
-// Services/PatentService.cs
+/*
+* PatentService
+*
+* This encapsulates business logic for managing the user, which provides abstraction
+* between the controller and repository.
+*
+* This service uses the IPatentRepository to interact with the data, allowing 
+* for decoupling and testability.
+*/
 using backend.Models;
 using backend.Repositories;
 using backend.Services;
@@ -21,7 +29,7 @@ namespace backend.Services
             return await _patentRepository.GetPatentsAsync();
         }
 
-        public async Task<Patent> GetPatentAsync(int id)
+        public async Task<Patent?> GetPatentAsync(int id)
         {
             return await _patentRepository.GetPatentAsync(id);
         }

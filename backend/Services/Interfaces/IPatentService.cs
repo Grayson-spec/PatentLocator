@@ -8,7 +8,7 @@ namespace backend.Services
     public interface IPatentService
     {
         Task<IEnumerable<Patent>> GetPatentsAsync();
-        Task<Patent> GetPatentAsync(int id);
+        Task<Patent?> GetPatentAsync(int id);
         Task CreatePatentAsync(Patent patent);
         Task UpdatePatentAsync(Patent patent);
         Task DeletePatentAsync(int id);
