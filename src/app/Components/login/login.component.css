@@ -1,0 +1,162 @@
+/* Login Container */
+.login-container {
+    background: linear-gradient(135deg, #002855, #001233);
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+}
+
+/* Left Branding Panel */
+.login-branding {
+    display: none;
+}
+
+/* Right Login Card */
+.login-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-header p {
+    color: #ccc;
+}
+
+/* Form Elements */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.input-icon {
+    color: #fff;
+}
+
+.professional-input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 2.5rem;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.professional-input:focus {
+    border-color: #00b4d8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+
+.password-toggle {
+    color: #fff;
+}
+
+/* Buttons */
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.back-button, .login-button {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.back-button {
+    background: #333;
+    color: #fff;
+}
+
+.back-button:hover {
+    background: #444;
+}
+
+.login-button {
+    background: #00b4d8;
+    color: #fff;
+}
+
+.login-button:hover {
+    background: #0093b8;
+}
+
+/* Additional Elements */
+.security-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ccc;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+.division-line {
+    position: relative;
+    margin: 2rem 0;
+    text-align: center;
+    color: #ccc;
+}
+
+.division-line::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #333;
+    z-index: 1;
+}
+
+.division-line span {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0 1rem;
+}
+
+.sso-button {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sso-button:hover {
+    border-color: #00b4d8;
+    color: #00b4d8;
+}
+
+.legal-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #ccc;
+}
