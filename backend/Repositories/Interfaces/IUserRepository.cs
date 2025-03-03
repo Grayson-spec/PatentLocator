@@ -7,10 +7,11 @@
 * decoupling, testability, and flexability.
 */
 using backend.Models;
+using backend.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace backend.Repositories
+namespace backend.Repositories.Interfaces
 {
     public interface IUserRepository
     {

@@ -11,6 +11,7 @@
 *
 */
 using backend.Services;
+using backend.Services.Interfaces;
 using backend.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

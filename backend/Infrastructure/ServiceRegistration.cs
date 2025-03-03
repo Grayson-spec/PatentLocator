@@ -3,7 +3,6 @@ using backend.Repositories;
 using backend.Services;
 using backend.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using backend.Services;
 using backend.Models;
 
 namespace backend.Infrastructure

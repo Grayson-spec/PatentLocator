@@ -2,7 +2,7 @@
 using backend.Logging;
 using Microsoft.Extensions.Logging;
 
-namespace Backend.Logging
+namespace backend.Logging
 {
     public class LoggerManager : ILoggerManager
     {
