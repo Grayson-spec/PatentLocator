@@ -44,7 +44,7 @@ namespace Backend.Controllers
 
         // GET api/patents/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Patent>> GetPatent(int id)
+        public async Task<ActionResult<Patent?>> GetPatent(int id)
         {
             _loggerManager.Logger.LogInformation($"GetPatent endpoint called with id {id}.");
             return await _patentService.GetPatentAsync(id);
