@@ -10,15 +10,15 @@
 * The PatentsRepository handles data access through Entity Framework Core.
 *
 */
-using Backend.Services;
-using Backend.Logging;
+using backend.Services;
+using backend.Services.Interfaces;
+using backend.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using backend.Models;
-using backend.Services;
-using backend.Logging;
 
-namespace Backend.Controllers
+
+namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -44,7 +44,7 @@ namespace Backend.Controllers
 
         // GET api/patents/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Patent>> GetPatent(int id)
+        public async Task<ActionResult<Patent?>> GetPatent(int id)
         {
             _loggerManager.Logger.LogInformation($"GetPatent endpoint called with id {id}.");
             return await _patentService.GetPatentAsync(id);

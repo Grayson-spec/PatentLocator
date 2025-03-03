@@ -11,11 +11,13 @@
 *
 */
 using backend.Services;
+using backend.Data;
+using backend.Services.Interfaces;
 using backend.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using backend.Models;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -25,9 +27,11 @@ namespace backend.Controllers
     {
         private readonly IUserService _userService;
         private readonly ILoggerManager _loggerManager;
+        private readonly ApplicationDbContext _context;
 
-        public UsersController(IUserService userService, ILoggerManager loggerManager)
+        public UsersController(IUserService userService, ILoggerManager loggerManager, ApplicationDbContext context)
         {
+            _context = context;
             _userService = userService;
             _loggerManager = loggerManager;
         }
@@ -99,6 +103,23 @@ namespace backend.Controllers
             _loggerManager.Logger.LogInformation($"DeleteUser endpoint called with id {id}.");
             await _userService.DeleteUserAsync(id);
             return NoContent();
+        }
+
+        [HttpPost("check-credentials")]
+        public async Task<IActionResult> CheckCredentials([FromBody] User user)
+        {
+            var existingUser = await _context.Users
+                .Where(u => u.Username == user.Username && u.Password == user.Password)
+                .FirstOrDefaultAsync();
+
+            if (existingUser != null)
+            {
+                return Ok(new { IsValid = true });
+            }
+            else
+            {
+                return Ok(new { IsValid = false });
+            }
         }
     }
 }

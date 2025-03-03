@@ -10,7 +10,7 @@ using backend.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace backend.Services
+namespace backend.Services.Interfaces
 {
     public interface IUserService
     {

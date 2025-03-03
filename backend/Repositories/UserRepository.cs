@@ -9,6 +9,7 @@
 */
 using backend.Models;
 using backend.Data;
+using backend.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories
