@@ -16,17 +16,8 @@ export class LoginComponent {
   constructor(private router: Router, private http: HttpClient) { }
 
   onSubmit(username: string, password: string): void {
-    const user = { Username: username, Password: password };
-    this.http.post('http://localhost:5005/api/users', user)
-      .subscribe((response: any) => {
-        this.isValid = response.isValid;
-        if (this.isValid) {
           console.log(username, password);
           this.router.navigate(['/home']);
-        } else {
-          console.log("error");
-        }
-      });
   }
 
   

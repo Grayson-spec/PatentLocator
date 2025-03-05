@@ -4,7 +4,7 @@
 *
 * This handles HTTP requests for managing the data related to the user. 
 * This currently provides CRUD operations to the database.
-*
+* hello
 * This controller class utilizes respective Service and Repository layers. 
 * The PatentsService handles Business Logic.
 * The PatentsRepository handles data access through Entity Framework Core.
@@ -16,6 +16,7 @@ using backend.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using backend.Models;
+using backend.Interfaces;
 
 
 namespace backend.Controllers

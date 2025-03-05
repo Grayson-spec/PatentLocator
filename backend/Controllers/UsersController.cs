@@ -18,6 +18,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
+using backend.Interfaces;
+using backend.Infrastructure;
+using backend.Repositories;
+using backend.Repositories.Interfaces;
+using backend.Repositories;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace backend.Controllers
 {
@@ -27,34 +34,40 @@ namespace backend.Controllers
     {
         private readonly IUserService _userService;
         private readonly ILoggerManager _loggerManager;
-        private readonly ApplicationDbContext _context;
-
-        public UsersController(IUserService userService, ILoggerManager loggerManager, ApplicationDbContext context)
+        public UsersController(IUserService userService, ILoggerManager loggerManager)
         {
-            _context = context;
             _userService = userService;
             _loggerManager = loggerManager;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IPagination<User>>> GetUsers(int pageIndex = 0, int pageSize = 10)
         {
             _loggerManager.Logger.LogInformation("GetUsers endpoint called.");
-            var users = await _userService.GetUsersAsync();
-            return Ok(users);
+
+            // Fetch paginated users from the service
+            var usersResult = await _userService.GetUsersAsync(pageIndex, pageSize);
+            
+            // Return the paginated result to the client (including metadata)
+            return Ok(usersResult);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<User?>> GetUser(int id)
         {
-            if (id < 1)
+            try
             {
-                _loggerManager.Logger.LogError($"Invalid user id: {id}");
-                return BadRequest("Invalid user id");
+                var user = await _userService.GetUserAsync(id);
+                if(user == null)
+                {
+                    return NotFound("User not found.");
+                }
+                return Ok(user);
             }
-
-            _loggerManager.Logger.LogInformation($"GetUser endpoint called with id {id}.");
-            return await _userService.GetUserAsync(id);
+            catch (ServiceException ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
@@ -103,23 +116,6 @@ namespace backend.Controllers
             _loggerManager.Logger.LogInformation($"DeleteUser endpoint called with id {id}.");
             await _userService.DeleteUserAsync(id);
             return NoContent();
-        }
-
-        [HttpPost("check-credentials")]
-        public async Task<IActionResult> CheckCredentials([FromBody] User user)
-        {
-            var existingUser = await _context.Users
-                .Where(u => u.Username == user.Username && u.Password == user.Password)
-                .FirstOrDefaultAsync();
-
-            if (existingUser != null)
-            {
-                return Ok(new { IsValid = true });
-            }
-            else
-            {
-                return Ok(new { IsValid = false });
-            }
         }
     }
 }
