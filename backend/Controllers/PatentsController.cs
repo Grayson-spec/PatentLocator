@@ -16,6 +16,7 @@ using backend.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using backend.Models;
+using backend.Interfaces;
 
 
 namespace backend.Controllers

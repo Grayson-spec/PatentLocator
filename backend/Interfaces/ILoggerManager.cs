@@ -1,7 +1,7 @@
 // Logging/ILoggerManager.cs
 using Microsoft.Extensions.Logging;
 
-namespace backend.Logging
+namespace backend.Interfaces
 {
     public interface ILoggerManager
     {
