@@ -40,6 +40,14 @@
     width: 100%;
 }
 
+/* Ensure all labels are white */
+label {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
 .input-wrapper {
     position: relative;
     margin-bottom: 1.5rem;
