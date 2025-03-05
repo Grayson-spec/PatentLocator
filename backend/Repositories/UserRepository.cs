@@ -1,21 +1,16 @@
-/*
-* UserRepository
-*
-* This Repository encapsulates data access logic, which provides
-* a layer of abstraction between the service and the database.
-*
-* This repository uses Entity Framework Core to interact with the AppDbContext 
-* which allows for all database operations to be automated.
-*/
 using backend.Models;
 using backend.Data;
 using backend.Repositories.Interfaces;
+using backend.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using backend.Infrastructure;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace backend.Repositories
 {
+    // Implementing the IUserRepository interface in UserRepository
     public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
@@ -27,14 +22,41 @@ namespace backend.Repositories
             _logger = logger;
         }
 
-        public async Task<IEnumerable<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10)
+        // Pagination result class
+        public class Pagination<T> : IPagination<T>
+        {
+            public IEnumerable<T> Items { get; }
+            public int PageIndex { get; }
+            public int PageSize { get; }
+            public int TotalCount { get; }
+            public int TotalPages { get; }
+
+            public Pagination(IEnumerable<T> items, int pageIndex, int pageSize, int totalCount)
+            {
+                Items = items;
+                PageIndex = pageIndex;
+                PageSize = pageSize;
+                TotalCount = totalCount;
+                TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            }
+        }
+
+        // Implementing GetUsersAsync
+        public async Task<IPagination<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10)
         {
             try
             {
-                return await _context.Users
-                                     .Skip(pageIndex * pageSize)
-                                     .Take(pageSize)
-                                     .ToListAsync();
+                // Calculate the total number of users
+                var totalCount = await _context.Users.CountAsync();
+
+                // Fetch the users for the current page
+                var users = await _context.Users
+                                           .Skip(pageIndex * pageSize)
+                                           .Take(pageSize)
+                                           .ToListAsync();
+
+                // Return paginated results using the Pagination class
+                return new Pagination<User>(users, pageIndex, pageSize, totalCount);
             }
             catch (Exception ex)
             {
@@ -43,6 +65,7 @@ namespace backend.Repositories
             }
         }
 
+        // Implementing GetUserAsync
         public async Task<User?> GetUserAsync(int id)
         {
             try
@@ -56,6 +79,7 @@ namespace backend.Repositories
             }
         }
 
+        // Implementing CreateUserAsync
         public async Task CreateUserAsync(User user)
         {
             try
@@ -70,6 +94,7 @@ namespace backend.Repositories
             }
         }
 
+        // Implementing UpdateUserAsync
         public async Task UpdateUserAsync(User user)
         {
             try
@@ -84,6 +109,7 @@ namespace backend.Repositories
             }
         }
 
+        // Implementing DeleteUserAsync
         public async Task DeleteUserAsync(int id)
         {
             try

@@ -19,7 +19,12 @@ using System.Threading.Tasks;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
 using backend.Interfaces;
+using backend.Infrastructure;
 using backend.Repositories;
+using backend.Repositories.Interfaces;
+using backend.Repositories;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace backend.Controllers
 {
@@ -36,7 +41,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PaginationResult<User>>> GetUsers(int pageIndex = 0, int pageSize = 10)
+        public async Task<ActionResult<IPagination<User>>> GetUsers(int pageIndex = 0, int pageSize = 10)
         {
             _loggerManager.Logger.LogInformation("GetUsers endpoint called.");
 

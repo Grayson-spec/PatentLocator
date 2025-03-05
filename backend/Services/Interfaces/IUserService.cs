@@ -8,6 +8,7 @@
 */
 using backend.Models;
 using backend.Repositories;
+using backend.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace backend.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<PaginationResult<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10);
+        Task<IPagination<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10);
         Task<User?> GetUserAsync(int id);
         Task CreateUserAsync(User user);
         Task UpdateUserAsync(User user);

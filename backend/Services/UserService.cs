@@ -9,10 +9,11 @@
 * for decoupling and testability.
 */
 using backend.Models;
+using backend.Repositories; 
 using backend.Repositories.Interfaces;
 using backend.Services.Interfaces;
 using backend.Infrastructure;  // Import the custom exception for the service layer
-using 
+
 
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
@@ -30,26 +31,17 @@ namespace backend.Services
             _logger = logger;
         }
 
-        public async Task<PaginationResult<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10)
+        public async Task<IPagination<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10)
         {
             try
             {
-                // Fetch the total count of users from the database
-                var totalCount = await _userRepository.GetUsersAsync();
-
-                // Fetch the users based on the pagination parameters
-                var users = await _userRepository.Users
-                                           .Skip(pageIndex * pageSize)
-                                           .Take(pageSize)
-                                           .ToListAsync();
-
-                // Return the paginated result with metadata
-                return new PaginationResult<User>(users, pageIndex, pageSize, totalCount);
+                // Delegate the pagination logic to the repository
+                return await _userRepository.GetUsersAsync(pageIndex, pageSize);
             }
-            catch (Exception ex)
+            catch (DatabaseException ex)
             {
-                _logger.LogError(ex, "Error occurred while fetching users from the database.");
-                throw new DatabaseException("An error occurred while fetching users.");
+                _logger.LogError(ex, "Error occurred in the service layer while fetching users.");
+                throw new ServiceException("There was an issue fetching the users. Please try again later.");
             }
         }
 
