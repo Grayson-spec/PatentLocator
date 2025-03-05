@@ -1,28 +1,9 @@
 .about-container {
     background: linear-gradient(135deg, #002855, #001233);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 4rem 2rem;
     color: #fff;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-}
-
-h1 {
     text-align: center;
-    color: #00b5e2;
-    margin-bottom: 2rem;
-    font-size: 2.75rem;
-    text-shadow: 0 2px 8px rgba(0, 181, 226, 0.2);
-    animation: headerGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes headerGlow {
-    from { text-shadow: 0 2px 8px rgba(0, 181, 226, 0.2); }
-    to { text-shadow: 0 2px 16px rgba(0, 181, 226, 0.4); }
 }
 
 .about-info {
@@ -33,26 +14,66 @@ h1 {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 0 auto;
+}
+
+/* Style the Team Section */
+.team-section {
+    background: #f8f9fa; /* Light grey background */
+    padding: 4rem 1rem;
     text-align: center;
 }
 
-.button-group {
-    margin-top: 2rem;
+/* Style the Team Title */
+.team-title {
+    font-size: 2rem;
+    color: #002855;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+/* Team Container */
+.team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Align Rows */
+.team-row {
     display: flex;
     justify-content: center;
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
-.back-button {
-    background-color: #00b5e2;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
+/* Team Boxes */
+.team-box {
+    background: white; /* White box background */
+    padding: 2rem;
+    width: 400px; /* Keep original size */
+    height: 250px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Styling Inside the Team Box */
+.team-box h3 {
+    font-size: 1.5rem;
+    color: #002855;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.team-box p {
     font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    text-align: left;
+    padding-left: 10px;
+    font-weight: normal;
 }
 
-.back-button:hover {
-    background-color: #008bb0;
+.team-box p strong {
+    font-weight: bold;
 }
