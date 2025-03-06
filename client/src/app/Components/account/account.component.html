@@ -1,105 +1,98 @@
-<div class="accounts-container">
-    <h1>My Account</h1>
-    <div class="account-info">
-      <h2>Account Information</h2>
-      <p><strong>Username:</strong> {{ username }}</p>
-      <p><strong>Email:</strong> {{ email }}</p>
-      <p><strong>Account Type:</strong> Premium</p>
-      <p><strong>Subscription Status:</strong> Active</p>
-      <p><strong>Subscription Expiration:</strong> 2025-02-17</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+</head>
+<body>
+
+    <!-- NAVY BLUE HEADER -->
+    <div class="header">
+        My Account
     </div>
-    <div class="patent-saves">
-      <h2>Saved Patents</h2>
-      <p>You have {{ savedPatentCount }} saved patents.</p>
-      <ul>
-        <li>
-          <h3>{{ savedPatent1.title }}</h3>
-          <p><strong>Filing Date:</strong> {{ savedPatent1.filingDate }}</p>
-          <p><strong>Patent Number:</strong> {{ savedPatent1.patentNumber }}</p>
-          <p><strong>Inventors:</strong> {{ savedPatent1.inventors }}</p>
-        </li>
-        <li>
-          <h3>{{ savedPatent2.title }}</h3>
-          <p><strong>Filing Date:</strong> {{ savedPatent2.filingDate }}</p>
-          <p><strong>Patent Number:</strong> {{ savedPatent2.patentNumber }}</p>
-          <p><strong>Inventors:</strong> {{ savedPatent2.inventors }}</p>
-        </li>
-        <li>
-          <h3>{{ savedPatent3.title }}</h3>
-          <p><strong>Filing Date:</strong> {{ savedPatent3.filingDate }}</p>
-          <p><strong>Patent Number:</strong> {{ savedPatent3.patentNumber }}</p>
-          <p><strong>Inventors:</strong> {{ savedPatent3.inventors }}</p>
-        </li>
-      </ul>
-    </div>
-    <div class="notes">
-      <h2>Notes</h2>
-      <p>You have {{ noteCount }} notes.</p>
-      <ul>
-        <li>
-          <h3>{{ note1.title }}</h3>
-          <p>{{ note1.text }}</p>
-        </li>
-        <li>
-          <h3>{{ note2.title }}</h3>
-          <p>{{ note2.text }}</p>
-        </li>
-        <li>
-          <h3>{{ note3.title }}</h3>
-          <p>{{ note3.text }}</p>
-        </li>
-      </ul>
-    </div>
-    <div class="patent-recommendations">
-      <h2>Patent Recommendations</h2>
-      <p>We recommend the following patents based on your interests.</p>
-      <ul>
-        <li>
-          <h3>{{ recommendation1.title }}</h3>
-          <p><strong>Similarity Score:</strong> {{ recommendation1.similarityScore }}</p>
-          <p>{{ recommendation1.description }}</p>
-        </li>
-        <li>
-          <h3>{{ recommendation2.title }}</h3>
-          <p><strong>Similarity Score:</strong> {{ recommendation2.similarityScore }}</p>
-          <p>{{ recommendation2.description }}</p>
-        </li>
-        <li>
-          <h3>{{ recommendation3.title }}</h3>
-          <p><strong>Similarity Score:</strong> {{ recommendation3.similarityScore }}</p>
-          <p>{{ recommendation3.description }}</p>
-        </li>
-      </ul>
-    </div>
-    <div class="trends">
-      <h2>Trends</h2>
-      <p>Here are the top 5 trending technologies.</p>
-      <ul>
-        <li>
-          <h3>{{ trend1.technology }}</h3>
-          <p><strong>Patent Count:</strong> {{ trend1.patentCount }}</p>
-          <p>{{ trend1.description }}</p>
-        </li>
-        <li>
-          <h3>{{ trend2.technology }}</h3>
-          <p><strong>Patent Count:</strong> {{ trend2.patentCount }}</p>
-          <p>{{ trend2.description }}</p>
-        </li>
-        <li>
-          <h3>{{ trend3.technology }}</h3>
-          <p><strong>Patent Count:</strong> {{ trend3.patentCount }}</p>
-          <p>{{ trend3.description }}</p>
-        </li>
-        <li>
-          <h3>{{ trend4.technology }}</h3>
-          <p><strong>Patent Count:</strong> {{ trend4.patentCount }}</p>
-          <p>{{ trend4.description }}</p>
-          </li>
-          <li>
-          <h3>{{ trend5.technology }}</h3>
-          <p><strong>Patent Count:</strong> {{ trend5.patentCount }}</p>
-          <p>{{ trend5.description }}</p>
-          </li>
-          </ul>
+
+    <div class="accounts-container">
+        <!-- FULL-WIDTH ACCOUNT INFO -->
+        <div class="account-info">
+            <h2>Account Information</h2>
+            <p><strong>Username:</strong> {{ username }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Account Type:</strong> Premium</p>
+            <p><strong>Subscription Status:</strong> Active</p>
+            <p><strong>Subscription Expiration:</strong> 2025-02-17</p>
+        </div>
+
+        <!-- FIRST ROW: SAVED PATENTS & NOTES -->
+        <div class="section-grid">
+            <div class="patent-saves">
+                <h2>📜 Saved Patents</h2>
+                <p>You have {{ savedPatentCount }} saved patents.</p>
+                <ul>
+                    <li>
+                        <h3>{{ savedPatent1.title }}</h3>
+                        <p><strong>Filing Date:</strong> {{ savedPatent1.filingDate }}</p>
+                        <p><strong>Patent Number:</strong> {{ savedPatent1.patentNumber }}</p>
+                        <p><strong>Inventors:</strong> {{ savedPatent1.inventors }}</p>
+                    </li>
+                    <li>
+                        <h3>{{ savedPatent2.title }}</h3>
+                        <p><strong>Filing Date:</strong> {{ savedPatent2.filingDate }}</p>
+                        <p><strong>Patent Number:</strong> {{ savedPatent2.patentNumber }}</p>
+                        <p><strong>Inventors:</strong> {{ savedPatent2.inventors }}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="notes">
+                <h2>🗒️ Notes</h2>
+                <p>You have {{ noteCount }} notes.</p>
+                <ul>
+                    <li>
+                        <h3>{{ note1.title }}</h3>
+                        <p>{{ note1.text }}</p>
+                    </li>
+                    <li>
+                        <h3>{{ note2.title }}</h3>
+                        <p>{{ note2.text }}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECOND ROW: PATENT RECOMMENDATIONS & TRENDS -->
+        <div class="section-grid">
+            <div class="patent-recommendations">
+                <h2>🔍 Patent Recommendations</h2>
+                <p>We recommend the following patents based on your interests.</p>
+                <ul>
+                    <li>
+                        <h3>{{ recommendation1.title }}</h3>
+                        <p><strong>Similarity Score:</strong> {{ recommendation1.similarityScore }}</p>
+                        <p>{{ recommendation1.description }}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="trends">
+                <h2>📈 Trends</h2>
+                <p>Here are the top trending technologies.</p>
+                <ul>
+                    <li>
+                        <h3>{{ trend1.technology }}</h3>
+                        <p><strong>Patent Count:</strong> {{ trend1.patentCount }}</p>
+                        <p>{{ trend1.description }}</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2025 PatentFinder. All rights reserved.</p>
+        <p>Need help? <a href="contact.html">Contact Us</a></p>
+    </footer>
+
+</body>
+</html>

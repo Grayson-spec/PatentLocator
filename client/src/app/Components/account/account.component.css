@@ -1,104 +1,99 @@
-.contact-container {
-    background: #002855;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-bottom: 4rem;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-}
-
-.contact-header {
-    background: #002855;
-    color: white;
-    width: 100%;
-    padding: 2rem 0;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.contact-header::before {
-    content: "✉️";
-    margin-right: 10px;
-    font-size: 2rem;
-    color: #00b5e2;
-}
-
-.contact-info {
-    background: white;
-    padding: 3rem;
-    width: 50%;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    margin-top: 3rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.contact-info p {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    align-items: center;
-}
-
-.contact-form label {
-    font-size: 1.2rem;
-    font-weight: 600;
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f8f9fa;
     color: #002855;
+    margin: 0;
+    padding: 0;
 }
 
-.contact-form input,
-.contact-form textarea {
-    width: 90%;
-    padding: 0.9rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    color: #333;
-    background: rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease-in-out;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: 2px solid #00b5e2;
-    background: white;
-}
-
-.contact-form textarea {
-    min-height: 150px;
-    resize: none;
-}
-
-.contact-form button {
-    margin-top: 1.5rem;
-    padding: 0.9rem 2.5rem;
-    font-size: 1.3rem;
-    border: none;
-    border-radius: 10px;
-    background: #00b5e2;
+/* NAVY BLUE HEADER */
+.header {
+    background: #002855;
     color: white;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 181, 226, 0.2);
+    text-align: center;
+    padding: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
 }
 
-.contact-form button:hover {
-    background: #008bb0;
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 181, 226, 0.3);
+/* MAIN CONTENT */
+.accounts-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
+/* SECTION GRID */
+.section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* STYLING FOR SECTIONS */
+.account-info, .patent-saves, .notes, .patent-recommendations, .trends {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #00b4d8;
+}
+
+/* SECTION HEADERS */
+.patent-saves h2, .notes h2, .patent-recommendations h2, .trends h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: #002855;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* LIST STYLING */
+.patent-saves ul, .notes ul, .patent-recommendations ul, .trends ul {
+    list-style: none;
+    padding: 0;
+}
+
+.patent-saves li, .notes li, .patent-recommendations li, .trends li {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* FOOTER */
+.footer {
+    background: #002855;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.footer a {
+    color: #00b4d8;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .section-grid {
+        grid-template-columns: 1fr;
+    }
+}
