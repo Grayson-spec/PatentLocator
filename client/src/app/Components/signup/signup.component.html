@@ -1,93 +1,45 @@
 <div class="signup-container">
-    <div class="signup-card">
-      <div class="card-header">
-        <h2><i class="fas fa-user-plus"></i> Create Your PatentFinder Pro Account</h2>
-        <p>Get started with your secured patent portfolios and search history</p>
-      </div>
-      <div class="form-container">
-        <form>
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <div class="input-wrapper">
-              <i class="fas fa-user input-icon"></i>
-              <input 
-                type="text" 
-                id="name" 
-                placeholder="Enter your full name"
-                class="professional-input">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <div class="input-wrapper">
-              <i class="fas fa-envelope input-icon"></i>
-              <input 
-                type="email" 
-                id="email" 
-                placeholder="Enter your email address"
-                class="professional-input">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="username">Professional Credentials</label>
-            <div class="input-wrapper">
-              <i class="fas fa-user-tie input-icon"></i>
-              <input 
-                type="text" 
-                id="username" 
-                placeholder="Enter your organizational ID"
-                class="professional-input"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password">Secure Passphrase</label>
-            <div class="input-wrapper">
-              <i class="fas fa-key input-icon"></i>
-              <input 
-                type="password" 
-                id="password" 
-                placeholder="••••••••••" 
-                class="professional-input">
-              <i class="fas fa-eye password-toggle"></i>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="confirm-password">Confirm Secure Passphrase</label>
-            <div class="input-wrapper">
-              <i class="fas fa-key input-icon"></i>
-              <input 
-                type="password" 
-                id="confirm-password" 
-                placeholder="••••••••••" 
-                class="professional-input">
-              <i class="fas fa-eye password-toggle"></i>
-            </div>
-          </div>
-          <div class="security-notice">
-            <i class="fas fa-lock"></i>
-            <span>All sessions are encrypted with AES-256</span>
-          </div>
-          <div class="button-group">
-            <button class="back-button" (click)="goBack()">
-              <i class="fas fa-arrow-left"></i> Return Home
-            </button>
-            <button class="signup-button" (click)="onSubmit()">
-              <i class="fas fa-user-plus"></i> Create Account
-            </button>
-          </div>
-          <div class="division-line">
-            <span>OR</span>
-          </div>
-          <div class="alternative-auth">
-            <button class="sso-button">
-              <i class="fas fa-id-badge"></i> Enterprise SSO
-            </button>
-          </div>
-        </form>
-      </div>
-      <div class="legal-footer">
-        <p>By continuing, you agree to our <a>Data Protection Agreement</a></p>
-      </div>
+    <!-- Top Header -->
+    <div class="signup-header">
+        Create Your PatentFinder Pro Account
     </div>
-  </div>
+
+    <!-- Signup Form Box -->
+    <div class="signup-card">
+        <p>Get started with your secured patent portfolios and search history</p>
+
+        <form class="signup-form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email address">
+
+            <label for="organization">Professional Credentials</label>
+            <input type="text" id="organization" placeholder="Enter your organizational ID">
+
+            <label for="password">Secure Passphrase</label>
+            <input type="password" id="password" placeholder="••••••••••">
+
+            <label for="confirm-password">Confirm Secure Passphrase</label>
+            <input type="password" id="confirm-password" placeholder="••••••••••">
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="button" class="back-btn">Return Home</button>
+                <button type="submit" class="signup-btn">Create Account</button>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">OR</div>
+
+            <!-- SSO Login -->
+            <button type="button" class="sso-btn">Enterprise SSO</button>
+        </form>
+
+        <!-- Footer -->
+        <div class="signup-footer">
+            <p>By continuing, you agree to our <a href="#">Data Protection Agreement</a></p>
+        </div>
+    </div>
+</div>

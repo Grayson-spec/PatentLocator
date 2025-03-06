@@ -15,7 +15,7 @@ body {
 }
 
 .hero {
-    background: #00b5e2;
+    background: #00b4d8;
     color: white;
     text-align: center;
     padding: 4rem 2rem;
@@ -44,7 +44,7 @@ body {
 .search-button {
     padding: 0.9rem 2rem;
     margin-left: 1rem;
-    background: #00b5e2;
+    background: #00b4d8;
     color: white;
     border: none;
     border-radius: 8px;
@@ -53,7 +53,7 @@ body {
 }
 
 .search-button:hover {
-    background: #008bb0;
+    background: #00b4d8;
 }
 
 .featured-patents {

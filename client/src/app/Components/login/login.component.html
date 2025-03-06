@@ -1,60 +1,34 @@
 <div class="login-container">
-    <div class="login-card">
-      <div class="card-header">
-        <h2><i class="fas fa-lock"></i> PatentFinder Login</h2>
-        <p>Access your secured patent portfolios and search history</p>
-      </div>
-      <div class="form-container">
-        <div class="form-group">
-          <label for="username">Professional Credentials</label>
-          <div class="input-wrapper">
-            <i class="fas fa-user-tie input-icon"></i>
-            <input 
-              type="text" 
-              id="username" 
-              #username
-              placeholder="Enter your organizational ID"
-              class="professional-input">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="password-header">
-            <label for="password">Secure Passphrase</label>
-          </div>
-          <div class="input-wrapper">
-            <i class="fas fa-key input-icon"></i>
-            <input 
-              type="password" 
-              id="password" 
-              #password
-              placeholder="••••••••••" 
-              class="professional-input">
-            <i class="fas fa-eye password-toggle"></i>
-          </div>
-        </div>
-        <div class="security-notice">
-          <i class="fas fa-lock"></i>
-          <span>All sessions are encrypted with AES-256</span>
-        </div>
-        <div class="button-group">
-          <button class="back-button" (click)="goBack()">
-            <i class="fas fa-arrow-left"></i> Return Home
-          </button>
-          <button class="login-button" (click)="onSubmit(username.value, password.value)">
-            <i class="fas fa-unlock"></i> Authenticate
-          </button>
-        </div> 
-        <div class="division-line">
-          <span>OR</span>
-        </div> 
-        <div class="alternative-auth">
-          <button class="sso-button">
-            <i class="fas fa-id-badge"></i> Enterprise SSO
-          </button>
-        </div>
-      </div> 
-      <div class="legal-footer">
-        <p>By continuing, you agree to our <a>Data Protection Agreement</a></p>
-      </div>
+    <!-- Top Header -->
+    <div class="login-header">
+        PatentFinder Login
     </div>
-  </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+        <h3>Access your secured patent portfolios and search history</h3>
+
+        <div class="form-group">
+            <label for="username">Professional Credentials</label>
+            <input type="text" id="username" placeholder="Enter your organizational ID">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Secure Passphrase</label>
+            <input type="password" id="password" placeholder="••••••••••">
+        </div>
+
+        <div class="button-group">
+            <button class="back-button">Return Home</button>
+            <button class="login-button">Authenticate</button>
+        </div>
+
+        <div class="division-line">OR</div>
+
+        <button class="sso-button">Enterprise SSO</button>
+
+        <div class="legal-footer">
+            By continuing, you agree to our <a href="#">Data Protection Agreement</a>
+        </div>
+    </div>
+</div>
