@@ -44,11 +44,7 @@ namespace backend.Controllers
         public async Task<ActionResult<IPagination<User>>> GetUsers(int pageIndex = 0, int pageSize = 10)
         {
             _loggerManager.Logger.LogInformation("GetUsers endpoint called.");
-
-            // Fetch paginated users from the service
             var usersResult = await _userService.GetUsersAsync(pageIndex, pageSize);
-            
-            // Return the paginated result to the client (including metadata)
             return Ok(usersResult);
         }
 

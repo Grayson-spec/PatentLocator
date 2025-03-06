@@ -1,4 +1,3 @@
-// Accounts Component Class
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
+
+// Data here is temp data, only for testing purposes.
+// The final product will have data from the database posted here. 
 export class AccountComponent implements OnInit {
   username: string = 'John Doe';
   email: string = 'johndoe@example.com';

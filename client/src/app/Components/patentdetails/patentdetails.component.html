@@ -1,19 +1,12 @@
 <body>
-    <!-- Header -->
     <header>
         Patent Information
     </header>
-
-    <!-- Main Content -->
     <main>
-        <!-- Search Section -->
         <div class="patent-search-container">
             <h1>Patent Search Results</h1>
             <input type="text" id="query" placeholder="Search patents...">
-            <button (click)="searchPatents()">Search</button>
         </div>
-
-        <!-- Results Section -->
         <section>
             <h2>Patent Overview</h2>
             <ul>
@@ -24,32 +17,25 @@
                 <li><strong>Inventors:</strong> <span id="inventors"></span></li>
             </ul>
         </section>
-
         <section>
             <h2>Patent Description</h2>
             <p id="patent-description"></p>
         </section>
-
         <section>
             <h2>Patent Claims</h2>
             <ol id="patent-claims"></ol>
         </section>
-
         <section>
             <h2>Patent Citations</h2>
             <ul id="patent-citations"></ul>
         </section>
-
-        <!-- Action Buttons -->
         <div class="patent-actions">
             <button>Save Patent</button>
             <button>Download PDF</button>
             <button>Share</button>
         </div>
     </main>
-
-    <!-- Footer -->
     <footer>
-        &copy; 2025 Your Company
+        &copy; 2025 Patent Locator
     </footer>
 </body>

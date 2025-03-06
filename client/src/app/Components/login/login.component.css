@@ -1,4 +1,4 @@
-/* Login Container */
+
 .login-container {
     background: linear-gradient(135deg, #002855, #001233);
     display: grid;
@@ -6,12 +6,11 @@
     min-height: 100vh;
 }
 
-/* Left Branding Panel */
+
 .login-branding {
     display: none;
 }
 
-/* Right Login Card */
 .login-card {
     background: rgba(255, 255, 255, 0.1);
     padding: 3rem;
@@ -33,7 +32,6 @@
     color: #ccc;
 }
 
-/* Form Elements */
 .form-container {
     max-width: 400px;
     margin: 0 auto;
@@ -64,7 +62,6 @@
     color: #fff;
 }
 
-/* Buttons */
 .button-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -102,8 +99,6 @@
 .login-button:hover {
     background: #0093b8;
 }
-
-/* Additional Elements */
 .security-notice {
     display: flex;
     align-items: center;

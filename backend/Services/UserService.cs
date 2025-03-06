@@ -9,14 +9,9 @@
 * for decoupling and testability.
 */
 using backend.Models;
-using backend.Repositories; 
 using backend.Repositories.Interfaces;
 using backend.Services.Interfaces;
-using backend.Infrastructure;  // Import the custom exception for the service layer
-
-
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using backend.Infrastructure; 
 
 namespace backend.Services
 {
@@ -35,7 +30,6 @@ namespace backend.Services
         {
             try
             {
-                // Delegate the pagination logic to the repository
                 return await _userRepository.GetUsersAsync(pageIndex, pageSize);
             }
             catch (DatabaseException ex)

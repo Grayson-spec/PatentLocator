@@ -3,14 +3,9 @@ using backend.Data;
 using backend.Repositories.Interfaces;
 using backend.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace backend.Repositories
 {
-    // Implementing the IUserRepository interface in UserRepository
     public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
@@ -21,8 +16,6 @@ namespace backend.Repositories
             _context = context;
             _logger = logger;
         }
-
-        // Pagination result class
         public class Pagination<T> : IPagination<T>
         {
             public IEnumerable<T> Items { get; }
@@ -41,21 +34,15 @@ namespace backend.Repositories
             }
         }
 
-        // Implementing GetUsersAsync
         public async Task<IPagination<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10)
         {
             try
             {
-                // Calculate the total number of users
                 var totalCount = await _context.Users.CountAsync();
-
-                // Fetch the users for the current page
                 var users = await _context.Users
                                            .Skip(pageIndex * pageSize)
                                            .Take(pageSize)
                                            .ToListAsync();
-
-                // Return paginated results using the Pagination class
                 return new Pagination<User>(users, pageIndex, pageSize, totalCount);
             }
             catch (Exception ex)
@@ -64,8 +51,6 @@ namespace backend.Repositories
                 throw new DatabaseException("An error occurred while fetching users.");
             }
         }
-
-        // Implementing GetUserAsync
         public async Task<User?> GetUserAsync(int id)
         {
             try
@@ -78,8 +63,6 @@ namespace backend.Repositories
                 throw new DatabaseException($"An error occurred while fetching the user with ID {id}.");
             }
         }
-
-        // Implementing CreateUserAsync
         public async Task CreateUserAsync(User user)
         {
             try
@@ -93,8 +76,6 @@ namespace backend.Repositories
                 throw new DatabaseException("An error occurred while creating the user.");
             }
         }
-
-        // Implementing UpdateUserAsync
         public async Task UpdateUserAsync(User user)
         {
             try
@@ -108,8 +89,6 @@ namespace backend.Repositories
                 throw new DatabaseException($"An error occurred while updating user with ID {user.Id}.");
             }
         }
-
-        // Implementing DeleteUserAsync
         public async Task DeleteUserAsync(int id)
         {
             try
