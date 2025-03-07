@@ -4,6 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start; /* Aligns content at the top */
+    margin: 0;
+    padding: 0;
 }
 
 /* Top Header */
@@ -16,6 +19,9 @@
     font-weight: bold;
     width: 100%;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0; /* Ensures no extra space above */
+    position: relative;
+    top: 0;
 }
 
 /* Signup Box */
@@ -25,36 +31,62 @@
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 480px;
-    margin-top: 3rem;
+    max-width: 500px;
+    margin-top: 2rem;
     text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.signup-card:hover {
+    transform: translateY(-3px);
 }
 
 /* Form Styles */
 .signup-form {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
 }
 
 .signup-form label {
     font-weight: bold;
     text-align: left;
+    color: #333;
 }
 
 .signup-form input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1rem;
     background: #f9f9f9;
+    transition: border-color 0.2s ease-in-out;
 }
 
 .signup-form input:focus {
     border-color: #00b4d8;
     outline: none;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 0 6px rgba(0, 180, 216, 0.3);
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    font-size: 0.85rem;
+    margin-top: -0.5rem;
+    text-align: left;
+}
+
+.weak {
+    color: red;
+}
+
+.medium {
+    color: orange;
+}
+
+.strong {
+    color: green;
 }
 
 /* Buttons */
@@ -68,11 +100,12 @@
 .signup-btn,
 .back-btn {
     width: 48%;
-    padding: 0.75rem;
+    padding: 0.9rem;
     font-size: 1rem;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
+    font-weight: bold;
 }
 
 .back-btn {
@@ -92,7 +125,7 @@
 }
 
 .signup-btn:hover {
-    background: #00b4d8;
+    background: #0096c7;
 }
 
 /* SSO Section */
@@ -105,7 +138,7 @@
 
 .sso-btn {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.9rem;
     font-size: 1rem;
     background: #e9ecef;
     border: 1px solid #ccc;
@@ -113,6 +146,11 @@
     color: #333;
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: bold;
 }
 
 .sso-btn:hover {
@@ -125,4 +163,14 @@
     font-size: 0.85rem;
     color: #666;
     margin-top: 1rem;
+}
+
+.signup-footer a {
+    color: #00b4d8;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-footer a:hover {
+    text-decoration: underline;
 }

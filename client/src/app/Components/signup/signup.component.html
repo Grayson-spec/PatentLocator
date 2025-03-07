@@ -20,6 +20,7 @@
 
             <label for="password">Secure Passphrase</label>
             <input type="password" id="password" placeholder="••••••••••">
+            <div class="password-strength" id="password-strength">Strength: </div>
 
             <label for="confirm-password">Confirm Secure Passphrase</label>
             <input type="password" id="confirm-password" placeholder="••••••••••">
@@ -34,7 +35,9 @@
             <div class="divider">OR</div>
 
             <!-- SSO Login -->
-            <button type="button" class="sso-btn">Enterprise SSO</button>
+            <button type="button" class="sso-btn">
+                <span>🔒</span> Enterprise SSO
+            </button>
         </form>
 
         <!-- Footer -->
@@ -43,3 +46,21 @@
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById("password").addEventListener("input", function () {
+    var strengthText = document.getElementById("password-strength");
+    var password = this.value;
+
+    if (password.length < 6) {
+        strengthText.textContent = "Strength: Weak";
+        strengthText.className = "password-strength weak";
+    } else if (password.length < 10) {
+        strengthText.textContent = "Strength: Medium";
+        strengthText.className = "password-strength medium";
+    } else {
+        strengthText.textContent = "Strength: Strong";
+        strengthText.className = "password-strength strong";
+    }
+});
+</script>
