@@ -6,7 +6,9 @@ import { WelcomepageComponent } from './Components/welcomepage/welcomepage.compo
 import { AboutComponent } from './Components/about/about.component';
 import { AccountComponent } from './Components/account/account.component';
 import { PatentdetailsComponent } from './Components/patentdetails/patentdetails.component';
-import { ContactComponent } from './Components/contact/contact.component';  // Add this line
+import { ContactComponent } from './Components/contact/contact.component';  
+import { AdminComponent } from './Components/admin/admin.component';
+
 
 export const routes: Routes = [
     { path: '', component: WelcomepageComponent },
@@ -17,7 +19,9 @@ export const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'account', component: AccountComponent },
     { path: 'patent', component: PatentdetailsComponent },
-    { path: 'contact', component: ContactComponent }  // Add this line
+    { path: 'contact', component: ContactComponent },  
+    { path: 'admin', component: AdminComponent }
+
 ];
 
 export const appRoutes = RouterModule.forRoot(routes);
