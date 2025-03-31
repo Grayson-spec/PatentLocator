@@ -55,5 +55,14 @@ namespace backend.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        // NEW: Search by title or inventor (case-insensitive)
+        public async Task<IEnumerable<Patent>> SearchPatentsAsync(string query)
+        {
+            return await _context.Patents
+                .Where(p => EF.Functions.Like(p.Title.ToLower(), $"%{query.ToLower()}%") ||
+                            EF.Functions.Like(p.Inventor.ToLower(), $"%{query.ToLower()}%"))
+                .ToListAsync();
+        }
     }
 }

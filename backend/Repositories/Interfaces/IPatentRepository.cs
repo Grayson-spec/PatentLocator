@@ -1,13 +1,12 @@
 /*
 * IPatentRepository
 *
-* This specifies methods for crud operations. 
+* This specifies methods for CRUD operations and search functionality.
 *
 * Implementations of this interface allow for 
-* decoupling, testability, and flexability.
+* decoupling, testability, and flexibility.
 */
 using backend.Models;
-using backend.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,5 +19,8 @@ namespace backend.Repositories.Interfaces
         Task CreatePatentAsync(Patent patent);
         Task UpdatePatentAsync(Patent patent);
         Task DeletePatentAsync(int id);
+
+        // New search method
+        Task<IEnumerable<Patent>> SearchPatentsAsync(string query);
     }
 }

@@ -19,5 +19,8 @@ namespace backend.Services.Interfaces
         Task CreatePatentAsync(Patent patent);
         Task UpdatePatentAsync(Patent patent);
         Task DeletePatentAsync(int id);
+
+        // ✅ New search method
+        Task<IEnumerable<Patent>> SearchPatentsAsync(string query);
     }
 }

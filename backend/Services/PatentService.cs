@@ -8,9 +8,7 @@
 * for decoupling and testability.
 */
 using backend.Models;
-using backend.Repositories;
 using backend.Repositories.Interfaces;
-using backend.Services;
 using backend.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -49,6 +47,12 @@ namespace backend.Services
         public async Task DeletePatentAsync(int id)
         {
             await _patentRepository.DeletePatentAsync(id);
+        }
+
+        // ✅ NEW: Implements the interface search method
+        public async Task<IEnumerable<Patent>> SearchPatentsAsync(string query)
+        {
+            return await _patentRepository.SearchPatentsAsync(query);
         }
     }
 }
