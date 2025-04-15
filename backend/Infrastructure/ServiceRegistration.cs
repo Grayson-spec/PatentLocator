@@ -1,8 +1,7 @@
-using backend.Repositories.Interfaces;
+using backend.Repositories.Interfaces; 
 using backend.Repositories;
 using backend.Services;
 using backend.Services.Interfaces;
-
 
 namespace backend.Infrastructure
 {
@@ -14,7 +13,10 @@ namespace backend.Infrastructure
             services.AddTransient<IPatentService, PatentService>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
-            
+
+            // ✅ Added SavedPatent bindings
+            services.AddTransient<ISavedPatentRepository, SavedPatentRepository>();
+            services.AddTransient<ISavedPatentService, SavedPatentService>();
         }
     }
 }

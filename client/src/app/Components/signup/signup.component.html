@@ -1,66 +1,59 @@
 <div class="signup-container">
-    <!-- Top Header -->
-    <div class="signup-header">
-        Create Your PatentFinder Pro Account
+  <div class="signup-header">Create Your PatentFinder Pro Account</div>
+
+  <div class="signup-card">
+    <p>Get started with your secured patent portfolios and search history</p>
+
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="signup-form">
+      <label for="username">Full Name</label>
+      <input
+        id="username"
+        type="text"
+        formControlName="username"
+        placeholder="Enter your full name"
+      />
+
+      <label for="email">Email Address</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Enter your email"
+      />
+
+      <label for="role">Role</label>
+      <input
+        id="role"
+        type="text"
+        formControlName="role"
+        placeholder="Enter role (e.g., user)"
+      />
+
+      <label for="password">Secure Passphrase</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="••••••••••"
+      />
+      <div class="password-strength">
+        Strength: {{ getPasswordStrength(formData.get('password')?.value || '') }}
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="back-btn" (click)="goBack()">Return Home</button>
+        <button type="submit" class="signup-btn">Create Account</button>
+      </div>
+
+      <div class="divider">OR</div>
+
+      <button type="button" class="sso-btn">
+        <span>🔒</span> Enterprise SSO
+      </button>
+    </form>
+
+    <div class="signup-footer">
+      <p>By continuing, you agree to our <a href="#">Data Protection Agreement</a></p>
     </div>
-
-    <!-- Signup Form Box -->
-    <div class="signup-card">
-        <p>Get started with your secured patent portfolios and search history</p>
-
-        <form class="signup-form">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Enter your full name">
-
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Enter your email address">
-
-            <label for="organization">Professional Credentials</label>
-            <input type="text" id="organization" placeholder="Enter your organizational ID">
-
-            <label for="password">Secure Passphrase</label>
-            <input type="password" id="password" placeholder="••••••••••">
-            <div class="password-strength" id="password-strength">Strength: </div>
-
-            <label for="confirm-password">Confirm Secure Passphrase</label>
-            <input type="password" id="confirm-password" placeholder="••••••••••">
-
-            <!-- Buttons -->
-            <div class="button-group">
-                <button type="button" class="back-btn">Return Home</button>
-                <button type="submit" class="signup-btn">Create Account</button>
-            </div>
-
-            <!-- Divider -->
-            <div class="divider">OR</div>
-
-            <!-- SSO Login -->
-            <button type="button" class="sso-btn">
-                <span>🔒</span> Enterprise SSO
-            </button>
-        </form>
-
-        <!-- Footer -->
-        <div class="signup-footer">
-            <p>By continuing, you agree to our <a href="#">Data Protection Agreement</a></p>
-        </div>
-    </div>
+  </div>
 </div>
-
-<script>
-document.getElementById("password").addEventListener("input", function () {
-    var strengthText = document.getElementById("password-strength");
-    var password = this.value;
-
-    if (password.length < 6) {
-        strengthText.textContent = "Strength: Weak";
-        strengthText.className = "password-strength weak";
-    } else if (password.length < 10) {
-        strengthText.textContent = "Strength: Medium";
-        strengthText.className = "password-strength medium";
-    } else {
-        strengthText.textContent = "Strength: Strong";
-        strengthText.className = "password-strength strong";
-    }
-});
-</script>

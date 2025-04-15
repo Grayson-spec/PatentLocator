@@ -73,6 +73,24 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* ✅ SIGN OUT BUTTON */
+.signout-btn {
+    background-color: #00b4d8;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.signout-btn:hover {
+    background-color: #009fc2;
+    transform: translateY(-2px);
+}
+
 /* FOOTER */
 .footer {
     background: #002855;

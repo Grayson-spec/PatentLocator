@@ -1,14 +1,4 @@
-/*
-* IUserService
-*
-* This Defines methods for crud operations. 
-*
-* Implementations of this interface allow for 
-* decoupling, testability, and flexability.
-*/
 using backend.Models;
-using backend.Repositories;
-using backend.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,9 +6,10 @@ namespace backend.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<IPagination<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10);
+        Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User?> GetUserAsync(int id);
-        Task CreateUserAsync(User user);
+        Task<User> CreateUserAsync(User user);
+        Task<User?> AuthenticateAsync(string username, string password);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(int id);
     }

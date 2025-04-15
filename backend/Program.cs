@@ -2,14 +2,14 @@ using backend.Data;
 using backend.Infrastructure;
 using backend.Interfaces;
 using backend.Logging;
-using Microsoft.EntityFrameworkCore; 
+using backend.Services.Interfaces; // ✅ Make sure this is included
+using backend.Services; // ✅ Needed to resolve SavedPatentService
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 //
 // CORS middleware is implemented here.
-//
 //
 builder.Services.AddCors(options =>
 {
@@ -23,6 +23,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 builder.Services.RegisterServices();
+
+// ✅ NEW: Register SavedPatentService
+builder.Services.AddScoped<ISavedPatentService, SavedPatentService>();
+
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -46,5 +50,3 @@ app.Use(async (context, next) =>
 
 app.MapControllers();
 app.Run();
-
-

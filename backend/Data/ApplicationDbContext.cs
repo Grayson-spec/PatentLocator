@@ -1,10 +1,11 @@
-/* 
+/*
 * ApplicationDbContext
 *
 * This Represents the database context for the application, providing access to
 * the various database tables through DbSet properties.
 *
 */
+
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,7 @@ namespace backend.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Patent> Patents { get; set; }
+        public DbSet<SavedPatent> SavedPatents { get; set; } // ✅ Added this line
     }
 }
 

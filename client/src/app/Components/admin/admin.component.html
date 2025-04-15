@@ -35,6 +35,14 @@
         <th>Publication Date</th>
       </tr>
     </thead>
-    <tbody id="table-body"></tbody>
+    <tbody>
+      <tr *ngFor="let patent of patents" (click)="goToPatentDetails(patent.id)" class="clickable-row">
+        <td>{{ patent.id }}</td>
+        <td>{{ patent.patentNumber }}</td>
+        <td>{{ patent.title }}</td>
+        <td>{{ patent.inventor }}</td>
+        <td>{{ patent.publicationDate | date }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>

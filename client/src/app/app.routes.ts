@@ -9,7 +9,6 @@ import { PatentdetailsComponent } from './Components/patentdetails/patentdetails
 import { ContactComponent } from './Components/contact/contact.component';  
 import { AdminComponent } from './Components/admin/admin.component';
 
-
 export const routes: Routes = [
     { path: '', component: WelcomepageComponent },
     { path: 'home', component: HomepageComponent },
@@ -18,10 +17,9 @@ export const routes: Routes = [
     { path: 'welcome', component: WelcomepageComponent },
     { path: 'about', component: AboutComponent },
     { path: 'account', component: AccountComponent },
-    { path: 'patent', component: PatentdetailsComponent },
+    { path: 'patent/:id', component: PatentdetailsComponent }, 
     { path: 'contact', component: ContactComponent },  
     { path: 'admin', component: AdminComponent }
-
 ];
 
 export const appRoutes = RouterModule.forRoot(routes);

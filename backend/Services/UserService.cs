@@ -1,17 +1,7 @@
-/*
-*
-* UserService
-*
-* This encapsulates business logic for managing the user, which provides abstraction
-* between the controller and repository.
-*
-* This service uses the IUserRepository to interact with the data, allowing 
-* for decoupling and testability.
-*/
 using backend.Models;
 using backend.Repositories.Interfaces;
 using backend.Services.Interfaces;
-using backend.Infrastructure; 
+using Microsoft.Extensions.Logging;
 
 namespace backend.Services
 {
@@ -26,69 +16,34 @@ namespace backend.Services
             _logger = logger;
         }
 
-        public async Task<IPagination<User>> GetUsersAsync(int pageIndex = 0, int pageSize = 10)
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            try
-            {
-                return await _userRepository.GetUsersAsync(pageIndex, pageSize);
-            }
-            catch (DatabaseException ex)
-            {
-                _logger.LogError(ex, "Error occurred in the service layer while fetching users.");
-                throw new ServiceException("There was an issue fetching the users. Please try again later.");
-            }
+            return await _userRepository.GetAllUsersAsync();
         }
 
         public async Task<User?> GetUserAsync(int id)
         {
-            try
-            {
-                return await _userRepository.GetUserAsync(id);
-            }
-            catch (DatabaseException ex)
-            {
-                _logger.LogError(ex, "Error occurred in the service layer while fetching a user.");
-                throw new ServiceException("There was an issue fetching the user. Please try again later.");
-            }
+            return await _userRepository.GetUserAsync(id);
         }
 
-        public async Task CreateUserAsync(User user)
+        public async Task<User> CreateUserAsync(User user)
         {
-            try
-            {
-                await _userRepository.CreateUserAsync(user);
-            }
-            catch (DatabaseException ex)
-            {
-                _logger.LogError(ex, "Error occurred in the service layer while creating a user.");
-                throw new ServiceException("There was an issue creating the user. Please try again later.");
-            }
+            return await _userRepository.CreateUserAsync(user);
+        }
+
+        public async Task<User?> AuthenticateAsync(string username, string password)
+        {
+            return await _userRepository.AuthenticateAsync(username, password);
         }
 
         public async Task UpdateUserAsync(User user)
         {
-            try
-            {
-                await _userRepository.UpdateUserAsync(user);
-            }
-            catch (DatabaseException ex)
-            {
-                _logger.LogError(ex, "Error occurred in the service layer while updating a user.");
-                throw new ServiceException("There was an issue updating the user. Please try again later.");
-            }
+            await _userRepository.UpdateUserAsync(user);
         }
 
         public async Task DeleteUserAsync(int id)
         {
-            try
-            {
-                await _userRepository.DeleteUserAsync(id);
-            }
-            catch (DatabaseException ex)
-            {
-                _logger.LogError(ex, "Error occurred in the service layer while deleting a user.");
-                throw new ServiceException("There was an issue deleting the user. Please try again later.");
-            }
+            await _userRepository.DeleteUserAsync(id);
         }
     }
 }
