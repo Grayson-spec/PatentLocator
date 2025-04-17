@@ -5,22 +5,20 @@ import { Observable } from 'rxjs';
 export interface SavedPatent {
   id: number;
   userId: number;
-  patentNumber: string;
-  title: string;
-  inventor: string;
-  publicationDate: string;
+  patentId: number;
+  savedDate: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class SavedPatentService {
-  private apiUrl = 'http://localhost:5005/api/savedpatents';
+  private apiUrl = 'http://localhost:5005/api/users/saved';
 
   constructor(private http: HttpClient) {}
 
   getSavedPatents(userId: number): Observable<SavedPatent[]> {
-    return this.http.get<SavedPatent[]>(`${this.apiUrl}/user/${userId}`);
+    return this.http.get<SavedPatent[]>(`${this.apiUrl}/${userId}`);
   }
 
   addSavedPatent(savedPatent: SavedPatent): Observable<any> {

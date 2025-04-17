@@ -2,20 +2,20 @@ using backend.Data;
 using backend.Infrastructure;
 using backend.Interfaces;
 using backend.Logging;
-using backend.Services.Interfaces; // ✅ Make sure this is included
-using backend.Services; // ✅ Needed to resolve SavedPatentService
+using backend.Services.Interfaces;
+using backend.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //
-// CORS middleware is implemented here.
+// ✅ Define a named CORS policy to allow frontend on localhost:4200
 //
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:4200")
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -24,10 +24,11 @@ builder.Services.AddCors(options =>
 builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 builder.Services.RegisterServices();
 
-// ✅ NEW: Register SavedPatentService
+// Register custom services
 builder.Services.AddScoped<ISavedPatentService, SavedPatentService>();
 
 builder.Services.AddControllers();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -39,9 +40,16 @@ builder.Services.AddLogging(logging =>
 
 var app = builder.Build();
 
-app.UseCors();
+//
+// ✅ Apply the named CORS policy
+//
+app.UseCors("AllowFrontend");
+
 app.UseAuthorization();
 
+//
+// (Optional) Still allow wildcard header manually if needed
+//
 app.Use(async (context, next) =>
 {
     context.Response.Headers.Append("Access-Control-Allow-Origin", "*");

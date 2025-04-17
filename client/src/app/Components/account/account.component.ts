@@ -10,7 +10,6 @@ export class AccountComponent implements OnInit {
   username: string = '';
   email: string = '';
   savedPatents: SavedPatent[] = [];
-  noteCount: number = 0;
 
   constructor(private savedPatentService: SavedPatentService) {}
 

@@ -43,6 +43,26 @@ namespace backend.Migrations
                     b.ToTable("Patents");
                 });
 
+            modelBuilder.Entity("backend.Models.SavedPatent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PatentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("SavedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SavedPatents");
+                });
+
             modelBuilder.Entity("backend.Models.User", b =>
                 {
                     b.Property<int>("Id")

@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backend.Models
 {
@@ -17,10 +16,8 @@ namespace backend.Models
 
         public DateTime SavedDate { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; } = null!;
-
-        [ForeignKey("PatentId")]
-        public Patent Patent { get; set; } = null!;
+        // REMOVE THESE ENTIRELY
+        // public User User { get; set; }
+        // public Patent Patent { get; set; }
     }
 }

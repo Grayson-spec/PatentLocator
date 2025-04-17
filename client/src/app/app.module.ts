@@ -17,6 +17,7 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { PatentdetailsComponent } from './Components/patentdetails/patentdetails.component';
 import { AdminComponent } from './Components/admin/admin.component';
 
+
 // ✅ Standalone Components
 import { LoginComponent } from './Components/login/login.component';
 
@@ -38,7 +39,7 @@ import { LoginComponent } from './Components/login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    LoginComponent // ✅ Add standalone component here
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

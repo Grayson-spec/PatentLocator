@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 interface Patent {
@@ -20,7 +20,9 @@ export class AdminComponent implements OnInit {
   allPatents: Patent[] = [];
   latestDate: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    console.log('🧠 AdminComponent.ts loaded');
+  }
 
   ngOnInit(): void {
     this.getPatents();
@@ -48,5 +50,44 @@ export class AdminComponent implements OnInit {
 
   goToPatentDetails(id: number): void {
     this.router.navigate(['/patent', id]);
+  }
+
+  savePatent(patentId: number): void {
+    console.log('🟡 savePatent() called with ID:', patentId);
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    console.log('👤 Current user from localStorage:', currentUser);
+
+    if (!currentUser || !currentUser.id) {
+      alert('⚠️ You must be logged in to save patents.');
+      return;
+    }
+
+    const payload = {
+      userId: currentUser.id,
+      patentId: patentId,
+      savedDate: new Date().toISOString()
+    };
+
+    console.log('📦 Payload being sent to backend:', payload);
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.post('http://localhost:5005/api/users/saved', JSON.stringify(payload), { headers })
+      .subscribe({
+        next: () => {
+          console.log('✅ Patent saved successfully!');
+          alert('✅ Patent saved successfully!');
+        },
+        error: (err) => {
+          console.error('❌ Save failed with error:', err);
+          alert('❌ Failed to save patent.');
+        }
+      });
+  }
+
+  // ✅ Temporary test method to trigger savePatent with a valid patent ID (e.g., 1)
+  testSave(): void {
+    this.savePatent(1);
   }
 }

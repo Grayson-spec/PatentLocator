@@ -9,7 +9,6 @@
     <p><strong>Subscription Status:</strong> Active</p>
     <p><strong>Subscription Expiration:</strong> 2025-02-17</p>
 
-    <!-- ✅ Sign Out Button -->
     <button (click)="signOut()" class="signout-btn">Sign Out</button>
   </div>
 
@@ -19,10 +18,8 @@
       <p *ngIf="savedPatents.length === 0">You have no saved patents yet.</p>
       <ul>
         <li *ngFor="let patent of savedPatents">
-          <h3>{{ patent.title }}</h3>
-          <p><strong>Filing Date:</strong> {{ patent.publicationDate | date }}</p>
-          <p><strong>Patent Number:</strong> {{ patent.patentNumber }}</p>
-          <p><strong>Inventors:</strong> {{ patent.inventor }}</p>
+          <h3>Patent ID: {{ patent.patentId }}</h3>
+          <p><strong>Saved On:</strong> {{ patent.savedDate | date }}</p>
         </li>
       </ul>
     </div>

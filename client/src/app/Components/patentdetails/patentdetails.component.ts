@@ -39,23 +39,26 @@ export class PatentdetailsComponent implements OnInit {
   }
 
   savePatent(): void {
-    const userId = 1; // Placeholder for real user ID when auth is added
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+      alert('⚠️ You must be logged in to save patents.');
+      return;
+    }
 
+    const user = JSON.parse(currentUser);
     const savedPatent: SavedPatent = {
       id: 0,
-      userId: userId,
-      patentNumber: this.selectedPatent.patentNumber,
-      title: this.selectedPatent.title,
-      inventor: this.selectedPatent.inventor,
-      publicationDate: this.selectedPatent.publicationDate
+      userId: user.id,
+      patentId: this.selectedPatent.id,
+      savedDate: new Date().toISOString()
     };
 
     this.savedPatentService.addSavedPatent(savedPatent).subscribe({
       next: () => {
-        alert('Patent saved to your account!');
+        alert('✅ Patent saved to your account!');
       },
       error: (err) => {
-        console.error('Error saving patent:', err);
+        console.error('❌ Error saving patent:', err);
         alert('Something went wrong saving this patent.');
       }
     });
