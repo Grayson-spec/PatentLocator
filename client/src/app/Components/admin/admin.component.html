@@ -1,12 +1,6 @@
-<div class="admin-header">
+<div class="admin-header"> 
   <h2><i class="fas fa-user-shield"></i> Admin Dashboard</h2>
   <p>View and manage patent data pulled from the database</p>
-  <h1 style="color: red;">THIS IS THE REAL ADMIN COMPONENT</h1>
-</div>
-
-<!-- 🔧 DIAGNOSTIC TEST BUTTON -->
-<div style="margin-bottom: 1rem;">
-  <button (click)="testSave()">Test Save Call (Patent ID 1)</button>
 </div>
 
 <section class="admin-stats">
@@ -43,7 +37,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patent of patents">
+      <tr *ngFor="let patent of paginatedPatents">
         <td>{{ patent.id }}</td>
         <td>{{ patent.patentNumber }}</td>
         <td>{{ patent.title }}</td>
@@ -56,4 +50,10 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<div style="text-align: center; margin-top: 1.5rem;">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+  <span style="margin: 0 1rem;">Page {{ currentPage }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= patents.length">Next</button>
 </div>

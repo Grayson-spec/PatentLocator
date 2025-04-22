@@ -14,9 +14,7 @@ import { HomepageComponent } from './Components/homepage/homepage.component';
 import { WelcomepageComponent } from './Components/welcomepage/welcomepage.component';
 import { AboutComponent } from './Components/about/about.component';
 import { ContactComponent } from './Components/contact/contact.component';
-import { PatentdetailsComponent } from './Components/patentdetails/patentdetails.component';
 import { AdminComponent } from './Components/admin/admin.component';
-
 
 // ✅ Standalone Components
 import { LoginComponent } from './Components/login/login.component';
@@ -30,7 +28,6 @@ import { LoginComponent } from './Components/login/login.component';
     WelcomepageComponent,
     AboutComponent,
     ContactComponent,
-    PatentdetailsComponent,
     AdminComponent
   ],
   imports: [

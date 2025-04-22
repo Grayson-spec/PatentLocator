@@ -20,6 +20,9 @@ export class AdminComponent implements OnInit {
   allPatents: Patent[] = [];
   latestDate: string = '';
 
+  currentPage = 1;
+  itemsPerPage = 50;
+
   constructor(private http: HttpClient, private router: Router) {
     console.log('🧠 AdminComponent.ts loaded');
   }
@@ -41,11 +44,30 @@ export class AdminComponent implements OnInit {
       });
   }
 
+  get paginatedPatents(): Patent[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.patents.slice(start, end);
+  }
+
+  nextPage(): void {
+    if (this.currentPage * this.itemsPerPage < this.patents.length) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
   filterTable(event: Event): void {
     const value = (event.target as HTMLInputElement).value.toLowerCase();
     this.patents = this.allPatents.filter(p =>
       p.title.toLowerCase().includes(value) || p.inventor.toLowerCase().includes(value)
     );
+    this.currentPage = 1;
   }
 
   goToPatentDetails(id: number): void {
@@ -73,7 +95,7 @@ export class AdminComponent implements OnInit {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.post('http://localhost:5005/api/users/saved', JSON.stringify(payload), { headers })
+    this.http.post('http://localhost:5005/api/users/saved', payload, { headers })
       .subscribe({
         next: () => {
           console.log('✅ Patent saved successfully!');
@@ -84,10 +106,5 @@ export class AdminComponent implements OnInit {
           alert('❌ Failed to save patent.');
         }
       });
-  }
-
-  // ✅ Temporary test method to trigger savePatent with a valid patent ID (e.g., 1)
-  testSave(): void {
-    this.savePatent(1);
   }
 }
