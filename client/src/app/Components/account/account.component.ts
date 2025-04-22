@@ -28,6 +28,19 @@ export class AccountComponent implements OnInit {
     }
   }
 
+  deleteSavedPatent(id: number): void {
+    this.savedPatentService.deleteSavedPatent(id).subscribe({
+      next: () => {
+        this.savedPatents = this.savedPatents.filter(p => p.id !== id);
+        alert('🗑️ Patent removed from your saved list.');
+      },
+      error: (err) => {
+        console.error('Error removing saved patent:', err);
+        alert('❌ Failed to remove patent.');
+      }
+    });
+  }
+
   signOut(): void {
     localStorage.removeItem('currentUser');
     window.location.href = '/login';

@@ -20,6 +20,7 @@
         <li *ngFor="let patent of savedPatents">
           <h3>Patent ID: {{ patent.patentId }}</h3>
           <p><strong>Saved On:</strong> {{ patent.savedDate | date }}</p>
+          <button class="remove-btn" (click)="deleteSavedPatent(patent.id)">Remove</button>
         </li>
       </ul>
     </div>
