@@ -1,15 +1,3 @@
-/*
-*
-* PatentsController
-*
-* This handles HTTP requests for managing the data related to the user. 
-* This currently provides CRUD operations to the database.
-* hello
-* This controller class utilizes respective Service and Repository layers. 
-* The PatentsService handles Business Logic.
-* The PatentsRepository handles data access through Entity Framework Core.
-*
-*/
 using backend.Services;
 using backend.Services.Interfaces;
 using backend.Logging;
@@ -17,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using backend.Models;
 using backend.Interfaces;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace backend.Controllers
 {
@@ -40,6 +29,10 @@ namespace backend.Controllers
         {
             _loggerManager.Logger.LogInformation("GetPatents endpoint called.");
             var patents = await _patentService.GetPatentsAsync();
+
+            // 🔥 Log count to confirm whether data is being returned from DB
+            Console.WriteLine($"🔥 Patents returned from DB: {patents.Count()}");
+
             return Ok(patents);
         }
 

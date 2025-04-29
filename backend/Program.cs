@@ -23,13 +23,15 @@ builder.Services.AddCors(options =>
 // ✅ MANUAL SERVICE REGISTRATION
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISavedPatentService, SavedPatentService>();
+builder.Services.AddScoped<IPatentService, PatentService>(); // 🔥 THIS LINE FIXES THE ERROR
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISavedPatentRepository, SavedPatentRepository>();
+builder.Services.AddScoped<IPatentRepository, PatentRepository>(); // ← Needed too if not already registered
 builder.Services.AddScoped<ILoggerManager, LoggerManager>();
 
 builder.Services.AddControllers();
 
-// ✅ HARD-CODED PATH TO CORRECT DATABASE
+// ✅ DATABASE CONTEXT — make sure this path is correct and used
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(@"Data Source=C:\Users\Jack\Downloads\patentsdatabase.db"));
 
@@ -53,7 +55,7 @@ app.Use(async (context, next) =>
 
 app.MapControllers();
 
-// ✅ Final log so you can confirm it
-Console.WriteLine("🔒 USING DATABASE → C:\\Users\\Jack\\Downloads\\patentsdatabase.db");
+// ✅ Confirm DB path at runtime
+Console.WriteLine("🔍 USING DATABASE FILE: C:\\Users\\Jack\\Downloads\\patentsdatabase.db");
 
 app.Run();
