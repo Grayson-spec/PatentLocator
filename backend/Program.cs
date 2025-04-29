@@ -1,9 +1,10 @@
 using backend.Data;
-using backend.Infrastructure;
 using backend.Interfaces;
 using backend.Logging;
-using backend.Services.Interfaces;
+using backend.Repositories;
+using backend.Repositories.Interfaces;
 using backend.Services;
+using backend.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,16 +20,18 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
-builder.Services.RegisterServices();
-
+// ✅ MANUAL SERVICE REGISTRATION
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISavedPatentService, SavedPatentService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ISavedPatentRepository, SavedPatentRepository>();
+builder.Services.AddScoped<ILoggerManager, LoggerManager>();
 
 builder.Services.AddControllers();
 
-// ✅ REVERTED: Simple, original DB setup
+// ✅ HARD-CODED PATH TO CORRECT DATABASE
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(@"Data Source=C:\Users\Jack\Downloads\patentsdatabase.db"));
 
 builder.Services.AddLogging(logging =>
 {
@@ -39,7 +42,7 @@ builder.Services.AddLogging(logging =>
 var app = builder.Build();
 
 app.UseCors("AllowFrontend");
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.Use(async (context, next) =>
@@ -49,4 +52,8 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+
+// ✅ Final log so you can confirm it
+Console.WriteLine("🔒 USING DATABASE → C:\\Users\\Jack\\Downloads\\patentsdatabase.db");
+
 app.Run();

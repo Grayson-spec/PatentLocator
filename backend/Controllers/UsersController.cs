@@ -1,10 +1,11 @@
 using backend.Services;
 using backend.Services.Interfaces;
 using backend.Models;
-using backend.Interfaces; // this makes ILoggerManager work
+using backend.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace backend.Controllers
 {
@@ -40,23 +41,45 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
-            var createdUser = await _userService.CreateUserAsync(user);
-            return CreatedAtAction(nameof(GetUser), new { id = createdUser.Id }, createdUser);
+            Console.WriteLine("🔥 Signup endpoint hit");
+
+            try
+            {
+                var createdUser = await _userService.CreateUserAsync(user);
+                return CreatedAtAction(nameof(GetUser), new { id = createdUser.Id }, createdUser);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"🔥 SIGNUP EXCEPTION: {ex.Message}");
+                _loggerManager.Logger.LogError($"Signup error: {ex.Message}");
+                return StatusCode(500, "Server error during signup: " + ex.Message);
+            }
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login([FromBody] User credentials)
         {
-            _loggerManager.Logger.LogInformation($"LOGIN ATTEMPT → Username: {credentials.Username}, Password: {credentials.Password}");
+            Console.WriteLine("🔥 Login endpoint hit");
 
-            var user = await _userService.AuthenticateAsync(credentials.Username, credentials.Password);
-            if (user == null)
+            try
             {
-                _loggerManager.Logger.LogError("❌ No matching user found.");
-                return Unauthorized("Invalid credentials");
-            }
+                _loggerManager.Logger.LogInformation($"LOGIN ATTEMPT → Username: {credentials.Username}, Password: {credentials.Password}");
 
-            return Ok(user);
+                var user = await _userService.AuthenticateAsync(credentials.Username, credentials.Password);
+                if (user == null)
+                {
+                    _loggerManager.Logger.LogError("❌ No matching user found.");
+                    return Unauthorized("Invalid credentials");
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"🔥 LOGIN EXCEPTION: {ex.Message}");
+                _loggerManager.Logger.LogError($"Login error: {ex.Message}");
+                return StatusCode(500, "Server error during login: " + ex.Message);
+            }
         }
 
         [HttpPut("{id}")]

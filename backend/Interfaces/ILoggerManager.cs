@@ -1,4 +1,3 @@
-// Logging/ILoggerManager.cs
 using Microsoft.Extensions.Logging;
 
 namespace backend.Interfaces
